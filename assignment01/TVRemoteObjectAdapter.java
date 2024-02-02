@@ -12,9 +12,12 @@ public class TVRemoteObjectAdapter implements TVRemote {
 	
 	public TVRemoteObjectAdapter(TV tvIn) {
 		tv = tvIn;
-		// put a loop in to make sure the TV at channel 2 
+		// put a loop in to make sure the TV is at channel 2 
 		// by calling the the down() method the maximum number of times
 		// (use tv.MAX_CHANNELS)
+		for (int i = 0; i < tv.MAX_CHANNELS; ++i) {
+			tv.down();
+		}
 	}
 	
 	// 4 other methods defined in the interface
@@ -25,9 +28,35 @@ public class TVRemoteObjectAdapter implements TVRemote {
 		newChannel = Math.max(newChannel, 2);
 		// write loops to move the tv to the correct channel.
 		// update tvChannel to be newChannel
+		while (tvChannel != newChannel) {
+			if (tvChannel > newChannel) {
+				channelDown();
+			}
+			else{ channelUp();}
+		}
 	} 
+
 	public void showChannel() {
 		System.out.print("Remote Channel is " + tvChannel + ". ");
+	}
+	
+	public void channelUp() {
+		tv.up();
+		tvChannel = Math.min(tv.MAX_CHANNELS, tvChannel + 1);
+	}
+
+	public void channelDown() {
+		tv.down();
+		tvChannel = Math.max(2, tvChannel - 1);
+
+	}
+
+	public void on() {
+		tv.on();
+	}
+
+	public void off() {
+		tv.off();
 	}
 }
 
