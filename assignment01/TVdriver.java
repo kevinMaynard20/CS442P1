@@ -1,5 +1,4 @@
 package assignment01;
-
 public class TVdriver {
 
 	public static void main(String[] args) {
@@ -27,6 +26,13 @@ public class TVdriver {
 		remote.setChannel(-10);
 		remote.showChannel();
 		tv.showChannel();
+		remote.setChannel(100);
+		remote.channelUp();
+		remote.showChannel();
+		tv.showChannel();
+		remote.channelDown();
+		remote.showChannel();
+		tv.showChannel();
 	}
 }
 
@@ -40,4 +46,6 @@ Remote Channel is 96. TV Channel is 96
 Remote Channel is 2. TV Channel is 2
 Remote Channel is 700. TV Channel is 700
 Remote Channel is 2. TV Channel is 2
+Remote Channel is 101. TV Channel is 101
+Remote Channel is 100. TV Channel is 100
 */
